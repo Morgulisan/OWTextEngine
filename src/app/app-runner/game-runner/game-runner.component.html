@@ -1,0 +1,16 @@
+<div style="border: 1px solid black;" >
+  <div>
+    <p>Menu</p>
+    <span>Beers: </span><app-evaluable value="Beers"></app-evaluable><br>
+    <span>Tiny Monsters killed: </span><app-evaluable value="Monsters.normal"></app-evaluable><br>
+    <span>Normal Monsters killed: </span><app-evaluable value="Monsters.mini"></app-evaluable><br>
+    <p></p>
+  </div>
+  <div style="border: 1px solid green">
+    <h1>{{currentRoom.roomName}}</h1>
+    <p>{{currentRoom.content}}</p>
+    <div *ngFor="let option of currentRoom.options" >
+      <button *ngIf="option.evalOptions()" (click)="selectOption(option)">{{option.optionText}}</button><br>
+    </div>
+  </div>
+</div>
