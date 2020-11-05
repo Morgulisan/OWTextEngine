@@ -7,6 +7,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { GameRunnerComponent } from './app-runner/game-runner/game-runner.component';
 import {VariableViewerComponentModule} from './app-runner/game-runner/variable-viewer/variable-viewer.component.module';
 import {DashboardComponentModule} from './app-worldeditor/dashboard/dashboard.component.module';
+import {MatCardModule} from '@angular/material/card';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -14,13 +16,15 @@ import {DashboardComponentModule} from './app-worldeditor/dashboard/dashboard.co
     AppComponent,
     GameRunnerComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatTabsModule,
-    VariableViewerComponentModule,
-    DashboardComponentModule
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatTabsModule,
+        VariableViewerComponentModule,
+        DashboardComponentModule,
+        MatCardModule,
+        MatTooltipModule,
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

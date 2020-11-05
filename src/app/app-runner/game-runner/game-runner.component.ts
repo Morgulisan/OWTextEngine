@@ -235,11 +235,11 @@ export class Action {
   }
 }
 
-enum COMP_TYPE {
+export enum COMP_TYPE {
   ABOVE, BELOW, EXACTLY, SET, NOT_SET
 }
 
-enum ACTION_TYPE{
+export enum ACTION_TYPE{
   ADD, SUBTRACT, SET, TOGGLE
 }
 
