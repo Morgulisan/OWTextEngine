@@ -1,0 +1,7 @@
+#application{
+  filter: invert(1);
+}
+
+*{
+  background: white;
+}

@@ -1,30 +1,13 @@
 <div>
-  <mat-grid-list cols="4" rowHeight="1200px">
-    <mat-grid-tile colspan="1">
+  <mat-grid-list cols="5" rowHeight="900px">
+    <mat-grid-tile colspan="1" style="overflow-y: scroll">
       <div style="height: 100%">
-        <mat-selection-list #selection [multiple]="false">
-          <span  *ngFor="let room of gameFiles">
-            <app-room-list-item [room]="room" ></app-room-list-item>
+          <mat-selection-list #selection [multiple]="false">
+          <span  *ngFor="let room of gameFiles | keyvalue">
+            <app-room-list-item [room]="room.value" ></app-room-list-item>
           </span>
         </mat-selection-list>
-          <!--<mat-expansion-panel *ngFor="let room of gameFiles">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
-                <app-chip [value]="room.roomId"></app-chip> {{room.roomName}}
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div>
-              <p>
-                {{room.content}}
-              </p>
-              <mat-list>
-                <mat-list-item *ngFor="let option of room.options">
-                  {{option.optionText}}
-                </mat-list-item>
-              </mat-list>
-            </div>
-          </mat-expansion-panel>-->
-          <mat-expansion-panel (keyup.enter)="createRoom()">
+        <mat-expansion-panel (keyup.enter)="createRoom()">
             <mat-expansion-panel-header>
               <mat-panel-title><mat-icon>add</mat-icon> Add new Room</mat-panel-title>
             </mat-expansion-panel-header>
@@ -40,10 +23,27 @@
               <button mat-button color="primary" (click)="createRoom()" >Save</button>
             </mat-action-row>
           </mat-expansion-panel>
+        <mat-divider></mat-divider>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="3">
-      <p>{{(selection.selectedOptions.selected[0]?.value).roomId}}</p>
+    <mat-grid-tile colspan="4">
+      <div style="height: 100%; width: 100%; box-sizing: border-box; border-left: 1px solid black" *ngIf="selection.selectedOptions.selected[0]">
+        <mat-toolbar>
+          <p>{{selection.selectedOptions.selected[0]?.value.roomName}} ({{(selection.selectedOptions.selected[0]?.value).roomId}})</p>
+        </mat-toolbar>
+        <mat-card>
+          <mat-form-field>
+            <mat-label>Room Name</mat-label>
+            <input matInput [(ngModel)]="selection.selectedOptions.selected[0]?.value.roomName">
+          </mat-form-field>
+          <br>
+          <mat-form-field style="width: 50%; min-height:220px ">
+            <mat-label>Room Description</mat-label>
+            <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="selection.selectedOptions.selected[0]?.value.content"></textarea>
+          </mat-form-field>
+
+        </mat-card>
+      </div>
     </mat-grid-tile>
   </mat-grid-list>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {GameSave} from '../game-runner.component';
 
 @Component({
@@ -22,7 +22,6 @@ export class VariableViewerComponent implements OnInit {
   }
 
   evaluate(): string{
-    console.log(VariableViewerComponent.Savegame);
     if ( !VariableViewerComponent.Savegame[this.value]) { return '0'; }
     return VariableViewerComponent.Savegame[this.value];
   }

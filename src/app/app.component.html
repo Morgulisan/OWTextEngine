@@ -1,10 +1,10 @@
-<div>
+<div id="application">
   <mat-tab-group animationDuration="0ms">
     <mat-tab label="Dashboard">
-      <app-dashboard></app-dashboard>
+      <app-dashboard [gameFiles]="gameFiles"></app-dashboard>
     </mat-tab>
     <mat-tab label="Run Game">
-      <app-game-runner></app-game-runner>
+      <app-game-runner [gameFiles]="gameFiles"></app-game-runner>
     </mat-tab>
   </mat-tab-group>
 </div>
