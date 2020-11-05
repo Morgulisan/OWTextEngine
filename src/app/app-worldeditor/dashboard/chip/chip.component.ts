@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ChipComponent implements OnInit {
 
-  @Input() value: string;
+  @Input() chipText: string;
 
   constructor() { }
 

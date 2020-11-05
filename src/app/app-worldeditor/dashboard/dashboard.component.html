@@ -1,9 +1,49 @@
 <div>
-  <h1>works!</h1>
-  <!--<mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>-->
-  <mat-selection-list>
-    <mat-list-option *ngFor="let room of gameFiles" >
-      <p><app-chip [value]="room.roomId"></app-chip> {{room.roomName}}</p>
-    </mat-list-option>
-  </mat-selection-list>
+  <mat-grid-list cols="4" rowHeight="1200px">
+    <mat-grid-tile colspan="1">
+      <div style="height: 100%">
+        <mat-selection-list #selection [multiple]="false">
+          <span  *ngFor="let room of gameFiles">
+            <app-room-list-item [room]="room" ></app-room-list-item>
+          </span>
+        </mat-selection-list>
+          <!--<mat-expansion-panel *ngFor="let room of gameFiles">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <app-chip [value]="room.roomId"></app-chip> {{room.roomName}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div>
+              <p>
+                {{room.content}}
+              </p>
+              <mat-list>
+                <mat-list-item *ngFor="let option of room.options">
+                  {{option.optionText}}
+                </mat-list-item>
+              </mat-list>
+            </div>
+          </mat-expansion-panel>-->
+          <mat-expansion-panel (keyup.enter)="createRoom()">
+            <mat-expansion-panel-header>
+              <mat-panel-title><mat-icon>add</mat-icon> Add new Room</mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-form-field>
+              <mat-label>Room Name</mat-label>
+              <input matInput [(ngModel)]="newRoomName">
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Id</mat-label>
+              <input matInput [(ngModel)]="newRoomId">
+            </mat-form-field>
+            <mat-action-row>
+              <button mat-button color="primary" (click)="createRoom()" >Save</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="3">
+      <p>{{(selection.selectedOptions.selected[0]?.value).roomId}}</p>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>

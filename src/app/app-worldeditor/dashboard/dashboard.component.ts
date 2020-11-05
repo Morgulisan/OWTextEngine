@@ -7,6 +7,7 @@ import {
   Prerequisite,
   Room
 } from '../../app-runner/game-runner/game-runner.component';
+import {addThemeToAppStyles} from '@angular/material/schematics/ng-add/theming/theming';
 
 
 @Component({
@@ -16,7 +17,7 @@ import {
 })
 export class DashboardComponent implements OnInit {
   gameFiles = [
-    new Room('null', 'Loading...', 'Loading...', []),
+    new Room('null', 'Loading Room', 'no content', []),
     new Room(
       'dfgsjr'
       , 'Old Dungeon'
@@ -51,9 +52,27 @@ export class DashboardComponent implements OnInit {
       ]),
   ];
 
+  newRoomName: string;
+  newRoomId: string;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  createRoom(): void {
+    // TODO if Room Name empty?
+    const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890123456789';
+    if ( this.newRoomId === undefined || this.newRoomId === null) { this.newRoomId = ''; }
+    while (!this.newRoomId || this.newRoomId.length < 5){
+      this.newRoomId += randomChars.charAt(Math.floor(Math.random() * 46));
+      // TODO Assert RoomId is Unused
+    }
+    this.gameFiles.push(
+      new Room('R' + this.newRoomId, this.newRoomName, 'Change Text', null)
+    );
+    this.newRoomId = '';
+    this.newRoomName = '';
   }
 
 }
