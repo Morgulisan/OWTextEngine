@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "OWTextEnigne"
+  "defaultProject": "OWTextEnigne",
+  "cli": {
+    "analytics": "3e3bc352-25bf-4361-8e31-4c2320dd0a20"
+  }
 }

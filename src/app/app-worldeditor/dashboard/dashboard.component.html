@@ -16,7 +16,7 @@
               <input matInput [(ngModel)]="newRoomName">
             </mat-form-field>
             <mat-form-field>
-              <mat-label>Id</mat-label>
+              <mat-label>Id (optional)</mat-label>
               <input matInput [(ngModel)]="newRoomId">
             </mat-form-field>
             <mat-action-row>
@@ -29,7 +29,11 @@
     <mat-grid-tile colspan="4">
       <div style="height: 100%; width: 100%; box-sizing: border-box; border-left: 1px solid black" *ngIf="selection.selectedOptions.selected[0]">
         <mat-toolbar>
-          <p>{{selection.selectedOptions.selected[0]?.value.roomName}} ({{(selection.selectedOptions.selected[0]?.value).roomId}})</p>
+          <span>{{selection.selectedOptions.selected[0]?.value.roomName}} ({{(selection.selectedOptions.selected[0]?.value).roomId}})</span>
+          <span class="example-spacer"></span>
+          <button mat-icon-butto class="example-icon"  (click)="selection.selectedOptions.clear()">
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-toolbar>
         <mat-card>
           <mat-form-field>
@@ -37,11 +41,11 @@
             <input matInput [(ngModel)]="selection.selectedOptions.selected[0]?.value.roomName">
           </mat-form-field>
           <br>
-          <mat-form-field style="width: 50%; min-height:220px ">
+          <mat-form-field style="width: 50%; min-height:120px ">
             <mat-label>Room Description</mat-label>
-            <textarea matInput placeholder="Ex. It makes me feel..." [(ngModel)]="selection.selectedOptions.selected[0]?.value.content"></textarea>
+            <textarea rows="6" matInput placeholder="Ex. It makes me feel..." [(ngModel)]="selection.selectedOptions.selected[0]?.value.content"></textarea>
           </mat-form-field>
-
+          <app-option-card *ngFor="let option of selection.selectedOptions.selected[0]?.value.options" [value]="option"></app-option-card>
         </mat-card>
       </div>
     </mat-grid-tile>

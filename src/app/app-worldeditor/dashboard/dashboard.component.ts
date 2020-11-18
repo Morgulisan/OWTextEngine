@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   newRoomName: string;
   newRoomId: string;
 
-  selection2: any;
+  selection: any;
 
   constructor() { }
 
@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
   createRoom(): void {
     // TODO if Room Name empty?
     const randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890123456789';
-    if ( this.newRoomId === undefined || this.newRoomId === null) { this.newRoomId = ''; }
+    if ( this.newRoomId === undefined || this.newRoomId === null || this.newRoomId === 'null') { this.newRoomId = ''; }
     while (!this.newRoomId || this.newRoomId.length < 5){
       this.newRoomId += randomChars.charAt(Math.floor(Math.random() * 46));
       // TODO Assert RoomId is Unused
@@ -32,6 +32,10 @@ export class DashboardComponent implements OnInit {
 
     this.newRoomId = '';
     this.newRoomName = '';
+  }
+
+  getRoomFromId(id: string){
+
   }
 
 }
