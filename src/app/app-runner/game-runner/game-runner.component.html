@@ -1,5 +1,6 @@
 <div style="border: 1px solid black;" >
   <div>
+    <h1>{{gameFiles.packName}}</h1>
     <p>Menu</p>
     <span>Beers: </span><app-evaluable value="Beers"></app-evaluable><br>
     <span>Tiny Monsters killed: </span><app-evaluable value="Monsters.normal"></app-evaluable><br>
@@ -10,7 +11,7 @@
     <h1>{{currentRoom.roomName}}</h1>
     <p>{{currentRoom.content}}</p>
     <div *ngFor="let option of currentRoom.options" >
-      <button *ngIf="option.evalOptions()" (click)="selectOption(option)">{{option.optionText}}</button>
+      <button *ngIf="evalOptions(option)" (click)="selectOption(option)">{{option.optionText}}</button>
     </div>
   </div>
 </div>

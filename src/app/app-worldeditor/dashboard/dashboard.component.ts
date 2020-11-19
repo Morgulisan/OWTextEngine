@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Room} from '../../app-runner/game-runner/game-runner.component';
+import {GameFile} from '../../app.component';
 
 
 @Component({
@@ -8,7 +9,7 @@ import {Room} from '../../app-runner/game-runner/game-runner.component';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  @Input() gameFiles: any;
+  @Input() gameFiles: GameFile;
 
   newRoomName: string;
   newRoomId: string;
@@ -28,14 +29,11 @@ export class DashboardComponent implements OnInit {
       this.newRoomId += randomChars.charAt(Math.floor(Math.random() * 46));
       // TODO Assert RoomId is Unused
     }
-    this.gameFiles['R' + this.newRoomId] = new Room('R' + this.newRoomId, this.newRoomName, 'Change Text', null);
+    this.gameFiles.Rooms['R' + this.newRoomId] = new Room('R' + this.newRoomId, this.newRoomName, 'Change Text', null);
 
     this.newRoomId = '';
     this.newRoomName = '';
   }
 
-  getRoomFromId(id: string){
-
-  }
 
 }

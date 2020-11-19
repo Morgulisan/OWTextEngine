@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {VariableViewerComponent} from './variable-viewer/variable-viewer.component';
+import {FileType, GameFile} from '../../app.component';
 
 @Component({
   selector: 'app-game-runner',
@@ -7,7 +8,7 @@ import {VariableViewerComponent} from './variable-viewer/variable-viewer.compone
   styleUrls: ['./game-runner.component.css']
 })
 export class GameRunnerComponent implements OnInit {
-  @Input() gameFiles: any;
+  @Input() gameFiles: GameFile;
   currentRoom: Room;
 
   constructor() {
@@ -15,16 +16,35 @@ export class GameRunnerComponent implements OnInit {
 
   ngOnInit(): void {
     VariableViewerComponent.setSaveGame(GameSave.values);
-    this.currentRoom = this.gameFiles.R84FZ6;
+    if (this.gameFiles.packType === FileType.BaseGameFile){
+      if (this.gameFiles.startRoom){
+        this.currentRoom = this.gameFiles.Rooms[this.gameFiles.startRoom];
+      }
+      else {
+        this.currentRoom = {roomId : 'null', roomName: 'Error Room', content: 'No Start Room Given in Game Files'};
+      }
+    }
+    else {
+      this.currentRoom = {roomId : 'null', roomName: 'Error Room', content: 'Gamefiles not of Type BaseGame'};
+    }
   }
 
   selectOption(option: Option): void{
 
-    this.currentRoom = this.gameFiles.null;
+    this.currentRoom = this.gameFiles.Rooms.null;
 
     if (option.changes != null) { option.changes.forEach(element => element.apply()); }
 
     this.currentRoom = this.gameFiles[option.nextScene];
+  }
+
+  evalOptions(o: Option): boolean{
+    const requirements = Object.assign([], o.prerequisite);
+    let out = true;
+    while (out && requirements.length > 0) {
+      out =  out && requirements.pop().evaluate();
+    }
+    return out;
   }
 
 }
@@ -34,7 +54,7 @@ export class Room {
   readonly roomId: RoomId;
   readonly roomName: Text;
   readonly content: Text;
-  readonly options: Option[];
+  readonly options?: Option[];
 
   constructor(id: string, rn: Text, cont: Text, options: Option[]) {
     this.roomId = id;
@@ -48,25 +68,16 @@ export class Room {
 
 export class Option {
 
-  readonly prerequisite: Prerequisite[];
+  readonly prerequisite?: Prerequisite[];
   readonly optionText: Text;
-  readonly changes: Action[];
-  readonly nextScene: RoomId;
+  readonly changes?: Action[];
+  readonly nextScene?: RoomId;
 
   constructor(text: Text, next: RoomId, change?: Action[], pre?: Prerequisite[]) {
     this.nextScene = next;
     this.optionText = text;
     this.changes = change;
     this.prerequisite = pre;
-  }
-
-  evalOptions(): boolean{
-    const requirements = Object.assign([], this.prerequisite);
-    let out = true;
-    while (out && requirements.length > 0) {
-      out =  out && requirements.pop().evaluate();
-    }
-    return out;
   }
 
 }

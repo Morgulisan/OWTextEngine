@@ -3,7 +3,7 @@
     <mat-grid-tile colspan="1" style="overflow-y: scroll">
       <div style="height: 100%">
           <mat-selection-list #selection [multiple]="false">
-          <span  *ngFor="let room of gameFiles | keyvalue">
+          <span  *ngFor="let room of gameFiles.Rooms | keyvalue">
             <app-room-list-item [room]="room.value" ></app-room-list-item>
           </span>
         </mat-selection-list>
