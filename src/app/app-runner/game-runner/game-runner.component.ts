@@ -35,7 +35,7 @@ export class GameRunnerComponent implements OnInit {
 
     if (option.changes != null) { option.changes.forEach(element => element.apply()); }
 
-    this.currentRoom = this.gameFiles[option.nextScene];
+    this.currentRoom = this.gameFiles.Rooms[option.nextScene];
   }
 
   evalOptions(o: Option): boolean{

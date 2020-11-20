@@ -31,7 +31,6 @@ export class DataServiceService {
       packType: FileType.BaseGameFile,
       startRoom: 'R84FZ6',
       Rooms: {
-        null: new Room('null', 'Loading...', 'Loading...', []),
         R20X9S: new Room(
           'R20X9S'
           , 'Old Dungeon'
@@ -67,10 +66,11 @@ export class DataServiceService {
           ]),
       }
     };
-    this.gameFiles = {
+    if (Math.random() > 0.7) {
+      this.gameFiles = {
       packName: 'Space Game',
       packType: FileType.BaseGameFile,
-      startRoom: '#RLOsd',
+      startRoom: 'RLOsd4',
       Rooms : {
         '#RLOsd' : {
           roomId : '#RLOsd',
@@ -84,6 +84,7 @@ export class DataServiceService {
         }
       }
     };
+    }
   }
 
 

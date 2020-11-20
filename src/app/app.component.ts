@@ -24,7 +24,7 @@ export class GameFile{
   packType?: FileType;
   packName?: string | null;
   packDescription?: string | null;
-  startRoom?: RoomId;
+  startRoom?: RoomId; // Required if BaseGameFile Type
   Rooms: {
     [key: string]: Room
   };
