@@ -19,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {FormsModule} from '@angular/forms';
 import {RoomListItemComponent} from './room-list-item/room-list-item.component';
 import {OptionCardComponent} from './option-card/option-card.component';
+import {InfoChipsComponent} from './option-card/info-chips/info-chips.component';
 
 @NgModule({
   providers: [],
@@ -48,6 +49,7 @@ import {OptionCardComponent} from './option-card/option-card.component';
     ChipComponent,
     RoomListItemComponent,
     OptionCardComponent,
+    InfoChipsComponent,
   ]
 })
 export class DashboardComponentModule{

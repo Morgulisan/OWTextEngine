@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GameSave} from '../game-runner.component';
+import {GameSave} from '../../../DataService/definitions';
 
 @Component({
   selector: 'app-evaluable',
@@ -10,19 +10,19 @@ export class VariableViewerComponent implements OnInit {
 
   constructor() { }
 
-  static Savegame: GameSave;
+  static SaveGame: GameSave;
 
   @Input() value: string;
 
   static setSaveGame(save: GameSave): void{
-    VariableViewerComponent.Savegame = save;
+    VariableViewerComponent.SaveGame = save;
   }
 
   ngOnInit(): void {
   }
 
   evaluate(): string{
-    if ( !VariableViewerComponent.Savegame[this.value]) { return '0'; }
-    return VariableViewerComponent.Savegame[this.value];
+    if ( !VariableViewerComponent.SaveGame[this.value]) { return '0'; }
+    return VariableViewerComponent.SaveGame[this.value];
   }
 }

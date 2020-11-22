@@ -1,4 +1,8 @@
 <mat-card>
-  <h3>{{value.optionText}}</h3>
-  <app-chip [chipText]="value.nextScene"></app-chip><span>{{data.getRoomFromId(value.nextScene).roomName}}</span>
+  <app-info-chips *ngFor="let pre of value.prerequisite" chipColor="green"
+                  [chipText]="pre.value + ' ' + data.typeSymbol(pre.type) + ' ' + (pre.threshold ? pre.threshold : '')">
+  </app-info-chips>
+  <app-info-chips chipColor="aquamarine" [chipText]="'#' + value.nextScene + ' ' + data.getRoomFromId(value.nextScene).roomName"></app-info-chips>
+  <app-info-chips *ngFor="let change of value.changes" chipColor="yellow" [chipText]="change.property + ' ' + data.changeSymbol(change.action) + ' ' + change.value"></app-info-chips>
+  <span>{{value.optionText}}</span>
 </mat-card>

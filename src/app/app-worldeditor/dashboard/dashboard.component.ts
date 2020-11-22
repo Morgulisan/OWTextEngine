@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Room} from '../../app-runner/game-runner/game-runner.component';
-import {GameFile} from '../../app.component';
+import {GameFile, Room} from '../../DataService/definitions';
 
 
 @Component({

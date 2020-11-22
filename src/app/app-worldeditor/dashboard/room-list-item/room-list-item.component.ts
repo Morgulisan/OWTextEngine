@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Room} from '../../../app-runner/game-runner/game-runner.component';
+import {Room} from '../../../DataService/definitions';
 
 @Component({
   selector: 'app-room-list-item',
